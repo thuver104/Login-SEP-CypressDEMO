@@ -1,0 +1,30 @@
+{
+  "name": "login-sep-cypress-demo",
+  "version": "1.0.0",
+  "description": "Cypress Testing Demo for SEP & QM - Quality Engineering Assignment",
+  "main": "index.js",
+  "scripts": {
+    "serve": "npx http-server app -p 3000 -s",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:run:section1": "cypress run --spec \"cypress/e2e/section1-assertions.cy.js\"",
+    "cypress:run:section2": "cypress run --spec \"cypress/e2e/section2-fixtures.cy.js\"",
+    "cypress:run:section3": "cypress run --spec \"cypress/e2e/section3-api-mocking.cy.js\"",
+    "cypress:run:section4": "cypress run --spec \"cypress/e2e/section4-reporting.cy.js\"",
+    "test": "npm run serve & npx wait-on http://localhost:3000 && cypress run",
+    "demo": "npm run serve & npx wait-on http://localhost:3000 && cypress open"
+  },
+  "keywords": [
+    "cypress",
+    "testing",
+    "quality-engineering",
+    "SLIIT",
+    "SEP"
+  ],
+  "author": "SEP & QM Group",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^13.17.0",
+    "http-server": "^14.1.1"
+  }
+}

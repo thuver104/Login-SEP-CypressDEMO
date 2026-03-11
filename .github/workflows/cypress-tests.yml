@@ -1,0 +1,84 @@
+# ============================================================
+# GitHub Actions CI/CD Pipeline for Cypress Tests
+# ============================================================
+#
+# This workflow automatically runs Cypress tests when code
+# is pushed to the repository or a pull request is created.
+#
+# WHAT THIS DOES:
+# 1. Checks out the code
+# 2. Sets up Node.js
+# 3. Installs dependencies
+# 4. Starts the local web server
+# 5. Runs all Cypress tests in headless mode
+# 6. Uploads screenshots and videos as artifacts
+#
+# HOW TO VIEW RESULTS:
+# - Go to the "Actions" tab in your GitHub repository
+# - Click on the workflow run to see pass/fail results
+# - Download artifacts (screenshots, videos) from the run
+# ============================================================
+
+name: Cypress E2E Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # Step 3: Install project dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Step 4: Run Cypress tests using the official action
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v6
+        with:
+          # Start the local server before running tests
+          start: npm run serve
+          # Wait for the server to be ready
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
+          # Run in headless browser
+          browser: chrome
+          # Record video
+          config: video=true
+
+      # Step 5: Upload screenshots on failure
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          if-no-files-found: ignore
+
+      # Step 6: Upload videos always
+      - name: Upload Videos
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          if-no-files-found: ignore

@@ -1,0 +1,18 @@
+{
+    "success": {
+        "status": 200,
+        "message": "Login successful",
+        "token": "fake-jwt-token-abc123",
+        "user": {
+            "id": 1,
+            "username": "testuser",
+            "role": "student"
+        }
+    },
+    "failure": {
+        "status": 401,
+        "message": "Invalid credentials",
+        "token": null,
+        "user": null
+    }
+}
