@@ -211,6 +211,6 @@ To view results: Go to your repo → **Actions** tab → click on the workflow r
 
 ---
 
-## �📝 License
+## 📝 License
 
 This project is for educational purposes – SLIIT Y3S2 SEP & QM Assignment.
