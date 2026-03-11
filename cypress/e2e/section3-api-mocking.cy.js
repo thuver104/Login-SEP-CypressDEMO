@@ -113,21 +113,11 @@ describe('Section 3 – API Mocking / Network Stubbing Demo', () => {
         cy.get('[data-testid="success-message"]').should('be.visible')
     })
 
-    // ---- Test 4: Simulate network delay ----
-    it('should simulate a slow network response', () => {
-        // Mock with a 2-second delay to simulate slow network
-        cy.intercept('POST', '/api/login', (req) => {
-            req.reply({
-                statusCode: 200,
-                body: {
-                    status: 200,
-                    message: 'Login successful',
-                    token: 'delayed-token-xyz',
-                    user: { id: 1, username: 'testuser', role: 'student' }
-                },
-                delay: 2000  // 2-second delay
-            })
-        }).as('slowLogin')
+    // ---- Test 4: Use cy.intercept() as a spy (no stubbing) ----
+    it('should spy on API requests without modifying them', () => {
+        // Intercept WITHOUT providing a response = spy mode
+        // The real request goes through, but we can still inspect it
+        cy.intercept('POST', '/api/login').as('spyLogin')
 
         cy.visit('/')
 
@@ -135,8 +125,13 @@ describe('Section 3 – API Mocking / Network Stubbing Demo', () => {
         cy.get('[data-testid="password-input"]').type('password123')
         cy.get('[data-testid="login-button"]').click()
 
-        // The request should still complete after the delay
-        cy.wait('@slowLogin').its('response.statusCode').should('eq', 200)
+        // Wait and inspect the request that was made
+        cy.wait('@spyLogin').then((interception) => {
+            // Verify the request body was sent correctly
+            expect(interception.request.body).to.have.property('username', 'testuser')
+            expect(interception.request.body).to.have.property('password', 'password123')
+            expect(interception.request.method).to.equal('POST')
+        })
 
         cy.get('[data-testid="success-message"]').should('be.visible')
     })
