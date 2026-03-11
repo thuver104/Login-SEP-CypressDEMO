@@ -35,6 +35,7 @@ Login-SEP-CypressDEMO/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - **Node.js** (v16 or later)
 - **npm** (comes with Node.js)
 
@@ -60,17 +61,18 @@ The login page will be available at **http://localhost:3000**
 
 ### Valid Test Credentials
 
-| Username    | Password      |
-| ----------- | ------------- |
-| `testuser`  | `password123` |
-| `admin`     | `admin@123`   |
-| `demouser`  | `demo2024`    |
+| Username   | Password      |
+| ---------- | ------------- |
+| `testuser` | `password123` |
+| `admin`    | `admin@123`   |
+| `demouser` | `demo2024`    |
 
 ---
 
 ## 🧑‍💻 Running Cypress Tests
 
 ### Interactive Mode (GUI) — for live demo
+
 ```bash
 # Start the server first, then open Cypress
 npm run serve
@@ -80,6 +82,7 @@ npx cypress open
 ```
 
 ### Headless Mode (CLI) — for CI/CD
+
 ```bash
 # Run all tests in headless mode
 npx cypress run
@@ -92,6 +95,7 @@ npx cypress run --spec "cypress/e2e/section4-reporting.cy.js"
 ```
 
 ### Using npm scripts
+
 ```bash
 npm run cypress:open              # Open Cypress GUI
 npm run cypress:run               # Run all tests (headless)
@@ -106,9 +110,11 @@ npm run cypress:run:section4      # Run Section 4 only
 ## 📋 Demo Sections
 
 ### Section 1 – Assertions (Member 1)
+
 **File:** `cypress/e2e/section1-assertions.cy.js`
 
 Demonstrates how Cypress **assertions** validate application behavior:
+
 - `should('be.visible')` – checks element visibility
 - `should('have.value')` – checks input field values
 - `should('contain.text')` – checks text content
@@ -119,10 +125,12 @@ Demonstrates how Cypress **assertions** validate application behavior:
 ---
 
 ### Section 2 – Fixtures (Member 2)
+
 **File:** `cypress/e2e/section2-fixtures.cy.js`  
 **Fixture Files:** `cypress/fixtures/users.json`, `cypress/fixtures/loginResponse.json`
 
 Demonstrates how **fixtures** separate test data from test logic:
+
 - `cy.fixture('users')` – loads JSON test data
 - Alias method using `@userData`
 - Using multiple fixture files together
@@ -132,9 +140,11 @@ Demonstrates how **fixtures** separate test data from test logic:
 ---
 
 ### Section 3 – API Mocking / Network Stubbing (Member 3)
+
 **File:** `cypress/e2e/section3-api-mocking.cy.js`
 
 Demonstrates **cy.intercept()** for mocking API requests:
+
 - Stubbing success responses (200)
 - Stubbing error responses (401, 500)
 - Using fixture files as mock responses
@@ -146,10 +156,12 @@ Demonstrates **cy.intercept()** for mocking API requests:
 ---
 
 ### Section 4 – Test Reporting & CI/CD (Member 4)
+
 **File:** `cypress/e2e/section4-reporting.cy.js`  
 **CI/CD Config:** `.github/workflows/cypress-tests.yml`
 
 Demonstrates **reporting** and **CI/CD integration**:
+
 - Running tests via CLI (`npx cypress run`)
 - Automatic screenshot capture on failures
 - Video recording of test runs
@@ -175,17 +187,30 @@ To view results: Go to your repo → **Actions** tab → click on the workflow r
 
 ## 📊 How Cypress Supports Quality Engineering Across the SDLC
 
-| SDLC Phase        | Cypress Feature         | Contribution                                         |
-| ----------------- | ----------------------- | ---------------------------------------------------- |
-| **Requirements**  | Assertions              | Define expected behaviors as executable tests         |
-| **Design**        | Fixtures                | Plan test data structures early                       |
-| **Implementation**| API Mocking             | Test frontend independently from backend              |
-| **Testing**       | All features            | Automate regression, integration, and E2E testing     |
-| **Deployment**    | CI/CD Pipeline          | Run tests automatically before every deployment       |
-| **Maintenance**   | Reporting               | Track test results, debug failures with screenshots   |
+| SDLC Phase         | Cypress Feature | Contribution                                        |
+| ------------------ | --------------- | --------------------------------------------------- |
+| **Requirements**   | Assertions      | Define expected behaviors as executable tests       |
+| **Design**         | Fixtures        | Plan test data structures early                     |
+| **Implementation** | API Mocking     | Test frontend independently from backend            |
+| **Testing**        | All features    | Automate regression, integration, and E2E testing   |
+| **Deployment**     | CI/CD Pipeline  | Run tests automatically before every deployment     |
+| **Maintenance**    | Reporting       | Track test results, debug failures with screenshots |
 
 ---
 
-## 📝 License
+## � Contributors
+
+**Group ID:** Y3S2-SE-80
+
+| Name          | Student ID |
+| ------------- | ---------- |
+| K. Vanayalini | IT23193840 |
+| T. Thuverakan | IT23281332 |
+| B. Clerin     | IT23402584 |
+| G. Shajana    | IT23164208 |
+
+---
+
+## �📝 License
 
 This project is for educational purposes – SLIIT Y3S2 SEP & QM Assignment.
