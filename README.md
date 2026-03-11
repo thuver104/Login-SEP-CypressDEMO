@@ -198,7 +198,7 @@ To view results: Go to your repo → **Actions** tab → click on the workflow r
 
 ---
 
-## � Contributors
+## Contributors
 
 **Group ID:** Y3S2-SE-80
 
